@@ -128,7 +128,7 @@ private:
                     flag = false;
                 }
                 else {
-                    r = minNode(p->right);
+                    r = minNode(p->left);
                     flag = true;
                 }
             }
@@ -209,7 +209,9 @@ public:
     }
 
     void deleteKey(int deleteKey) {
+        Node* x = searchBST(root, deleteKey);
         eraseBST(root, deleteKey);
+        if (x == nullptr) return;
         display();
     }
 

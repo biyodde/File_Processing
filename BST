@@ -116,20 +116,20 @@ private:
             bool flag;
             if (height(p->left) > height(p->right)) {
                 r = maxNode(p->left);
-                flag = 0;
+                flag = false;
             }
             else if (height(p->left) < height(p->right)) {
                 r = minNode(p->right);
-                flag = 1;
+                flag = true;
             }
             else {
                 if (size(p->left) >= size(p->right)) {
                     r = maxNode(p->left);
-                    flag = 0;
+                    flag = false;
                 }
                 else {
                     r = minNode(p->right);
-                    flag = 1;
+                    flag = true;
                 }
             }
 
@@ -230,14 +230,14 @@ public:
 
 int main() {
     BST tree;
-    char operation;
+    char id;
     int key;
 
-    while (cin >> operation >> key) {
-        if (operation == 'i') {
+    while (cin >> id >> key) {
+        if (id == 'i') {
             tree.insert(key);
         }
-        else if (operation == 'd') {
+        else if (id == 'd') {
             tree.deleteKey(key);
         }
     }

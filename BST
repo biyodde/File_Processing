@@ -37,9 +37,11 @@ private:
         Node* newNode = getNodeBST(newKey);
         if (T == nullptr) {
             T = newNode;
-        } else if (newKey > q->key) {
+        }
+        else if (newKey > q->key) {
             q->right = newNode;
-        } else {
+        }
+        else {
             q->left = newNode;
         }
         return false;
@@ -59,8 +61,10 @@ private:
     }
 
     Node* searchParentBST(Node* T, int searchKey) {
+
         Node* p = T;
         Node* q = nullptr;
+
         while (p != nullptr) {
             if (p->key < searchKey) {
                 q = p;
@@ -77,6 +81,7 @@ private:
     }
 
     Node* eraseBST(Node*& T, int deleteKey) {
+
         Node* p = searchBST(T, deleteKey);
         Node* q = searchParentBST(T, deleteKey);
 
@@ -118,18 +123,19 @@ private:
                 flag = 1;
             }
             else {
-                if (cntNodes(p->left) >= cntNodes(p->right)) {
+                if (size(p->left) >= size(p->right)) {
                     r = maxNode(p->left);
                     flag = 0;
-                } else {
+                }
+                else {
                     r = minNode(p->right);
                     flag = 1;
                 }
             }
 
-            int tempKey = r->key;
+            int tmpKey = r->key;
             eraseBST(T, r->key);
-            p->key = tempKey;
+            p->key = tmpKey;
         }
 
         return q;
@@ -163,10 +169,10 @@ private:
         return (leftHeight > rightHeight) ? leftHeight + 1 : rightHeight + 1;
     }
 
-    int cntNodes(Node* T) {
+    int size(Node* T) {
         if (T == nullptr) return 0;
-        int leftCount = cntNodes(T->left);
-        int rightCount = cntNodes(T->right);
+        int leftCount = size(T->left);
+        int rightCount = size(T->right);
         return 1 + leftCount + rightCount;
     }
 
@@ -174,9 +180,9 @@ private:
         if (node != nullptr) {
             cout << "<";
             inOrder(node->left);
-            if (node->left) cout << " ";
+            if (node->left) cout << "\0x20";
             cout << node->key;
-            if (node->right) cout << " ";
+            if (node->right) cout << "\0x20";
             inOrder(node->right);
             cout << ">";
         }
@@ -209,8 +215,9 @@ public:
 
     void display() {
         if (root == nullptr) {
-            cout << "<>" << endl;
-        } else {
+            cout << endl;
+        }
+        else {
             inOrder(root);
             cout << endl;
         }
